@@ -23,4 +23,11 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/settings', [\App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
     Route::post('/settings', [\App\Http\Controllers\SettingsController::class, 'update']);
+
+    Route::get('/members', [\App\Http\Controllers\MemberController::class, 'index'])->name('members');
+    Route::post('/members', [\App\Http\Controllers\MemberController::class, 'store'])->name('members.store');
+    Route::put('/members/{member}', [\App\Http\Controllers\MemberController::class, 'update'])->name('members.update');
+    Route::post('/members/{member}/renew', [\App\Http\Controllers\MemberController::class, 'renew'])->name('members.renew');
+    Route::delete('/members/{member}', [\App\Http\Controllers\MemberController::class, 'destroy'])->name('members.destroy');
+    Route::get('/members/{member}/payments', [\App\Http\Controllers\MemberController::class, 'payments'])->name('members.payments');
 });

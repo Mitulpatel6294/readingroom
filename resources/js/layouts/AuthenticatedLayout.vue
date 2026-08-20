@@ -11,10 +11,12 @@
           <li class="nav-item" :class="{ active: $page.component === 'Dashboard' }">
             <Link href="/dashboard"><i class="fa-solid fa-chart-pie"></i> <span>Dashboard</span></Link>
           </li>
+          <li class="nav-item" :class="{ active: $page.component?.startsWith('Members') }">
+            <Link href="/members"><i class="fa-solid fa-users"></i> <span>Members</span></Link>
+          </li>
           <li class="nav-item" :class="{ active: $page.component === 'Settings' }">
             <Link href="/settings"><i class="fa-solid fa-gears"></i> <span>Settings</span></Link>
           </li>
-          <!-- Other items to be added as features are developed -->
         </ul>
       </nav>
       <div class="sidebar-footer">
@@ -28,7 +30,7 @@
       <header class="topbar">
         <div class="topbar-left">
           <button @click="toggleSidebar" class="sidebar-toggle"><i class="fa-solid fa-bars"></i></button>
-          <h1>Dashboard</h1>
+          <h1>{{ pageTitle }}</h1>
         </div>
         <div class="topbar-right">
           <div class="current-date"><i class="fa-regular fa-calendar"></i> <span>{{ currentDate }}</span></div>
@@ -65,6 +67,16 @@ const toggleSidebar = () => {
 const currentDate = computed(() => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date().toLocaleDateString('en-US', options);
+});
+
+const PAGE_TITLES = {
+    'Dashboard': 'Dashboard',
+    'Settings': 'Settings',
+    'Members/Index': 'Members',
+};
+
+const pageTitle = computed(() => {
+    return PAGE_TITLES[page.component] || 'Dashboard';
 });
 
 // Flash messages handler
