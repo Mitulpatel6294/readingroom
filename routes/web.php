@@ -17,9 +17,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'destroy'])->name('logout');
     
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/settings', [\App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
     Route::post('/settings', [\App\Http\Controllers\SettingsController::class, 'update']);
