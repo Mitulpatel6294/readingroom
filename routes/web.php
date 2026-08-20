@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/settings', [\App\Http\Controllers\SettingsController::class, 'index'])->name('settings');
     Route::post('/settings', [\App\Http\Controllers\SettingsController::class, 'update']);
 
+    Route::get('/seats', [\App\Http\Controllers\SeatController::class, 'index'])->name('seats');
+
     Route::get('/members', [\App\Http\Controllers\MemberController::class, 'index'])->name('members');
     Route::post('/members', [\App\Http\Controllers\MemberController::class, 'store'])->name('members.store');
     Route::put('/members/{member}', [\App\Http\Controllers\MemberController::class, 'update'])->name('members.update');

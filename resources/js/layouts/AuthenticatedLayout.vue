@@ -11,6 +11,9 @@
           <li class="nav-item" :class="{ active: $page.component === 'Dashboard' }">
             <Link href="/dashboard"><i class="fa-solid fa-chart-pie"></i> <span>Dashboard</span></Link>
           </li>
+          <li class="nav-item" :class="{ active: $page.component?.startsWith('Seats') }">
+            <Link href="/seats"><i class="fa-solid fa-chair"></i> <span>Seats Grid</span></Link>
+          </li>
           <li class="nav-item" :class="{ active: $page.component?.startsWith('Members') }">
             <Link href="/members"><i class="fa-solid fa-users"></i> <span>Members</span></Link>
           </li>
@@ -72,6 +75,7 @@ const currentDate = computed(() => {
 const PAGE_TITLES = {
     'Dashboard': 'Dashboard',
     'Settings': 'Settings',
+    'Seats/Index': 'Seats Grid',
     'Members/Index': 'Members',
 };
 
