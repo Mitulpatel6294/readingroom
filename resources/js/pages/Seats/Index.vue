@@ -1,4 +1,5 @@
 <template>
+  <Head title="Seats" />
   <AuthenticatedLayout>
     <div>
       <!-- Seat Grid Legend -->
@@ -261,7 +262,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { useForm, router } from '@inertiajs/vue3';
+import { useForm, Head } from '@inertiajs/vue3';
 import axios from 'axios';
 import { generateReceiptPdf } from '../../utils/pdf';
 import AuthenticatedLayout from '../../layouts/AuthenticatedLayout.vue';

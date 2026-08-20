@@ -1,4 +1,5 @@
 <template>
+  <Head title="Dashboard" />
   <AuthenticatedLayout>
     <div>
       <!-- Dashboard Metrics -->
@@ -122,7 +123,7 @@
 </template>
 
 <script setup>
-import { router } from '@inertiajs/vue3';
+import { router, Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '../layouts/AuthenticatedLayout.vue';
 
 const props = defineProps({

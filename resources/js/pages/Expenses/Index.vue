@@ -1,4 +1,5 @@
 <template>
+  <Head title="Expenses" />
   <AuthenticatedLayout>
     <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start;">
       
@@ -126,7 +127,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { useForm, router } from '@inertiajs/vue3';
+import { useForm, router, Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '../../layouts/AuthenticatedLayout.vue';
 
 const props = defineProps({

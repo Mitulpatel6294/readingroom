@@ -1,4 +1,5 @@
 <template>
+  <Head title="Waiting List" />
   <AuthenticatedLayout>
     <div>
       <div class="table-actions">
@@ -196,7 +197,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { useForm, router } from '@inertiajs/vue3';
+import { useForm, router, Head } from '@inertiajs/vue3';
 import { generateReceiptPdf } from '../../utils/pdf';
 import AuthenticatedLayout from '../../layouts/AuthenticatedLayout.vue';
 

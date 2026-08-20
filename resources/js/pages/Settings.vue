@@ -1,4 +1,5 @@
 <template>
+  <Head title="Settings" />
   <AuthenticatedLayout>
     <div class="settings-container">
       <!-- Settings Panel -->
@@ -100,7 +101,7 @@
 </template>
 
 <script setup>
-import { useForm } from '@inertiajs/vue3';
+import { useForm, Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '../layouts/AuthenticatedLayout.vue';
 
 const props = defineProps({

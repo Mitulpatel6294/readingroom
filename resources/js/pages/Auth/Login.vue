@@ -1,4 +1,5 @@
 <template>
+  <Head title="Clever's Reading Room Management System" />
   <GuestLayout>
     <div class="login-container" style="display: flex;">
       <div class="login-card">
@@ -30,7 +31,7 @@
 </template>
 
 <script setup>
-import { useForm } from '@inertiajs/vue3';
+import { useForm, Head } from '@inertiajs/vue3';
 import GuestLayout from '../../layouts/GuestLayout.vue';
 
 const form = useForm({

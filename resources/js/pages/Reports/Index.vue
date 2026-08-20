@@ -1,4 +1,5 @@
 <template>
+  <Head title="Reports" />
   <AuthenticatedLayout>
     <div>
       <!-- Period Filter Buttons -->
@@ -274,6 +275,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { Head } from '@inertiajs/vue3';
 import AuthenticatedLayout from '../../layouts/AuthenticatedLayout.vue';
 
 const props = defineProps({

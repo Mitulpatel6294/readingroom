@@ -1,4 +1,5 @@
 <template>
+  <Head title="Members" />
   <AuthenticatedLayout>
     <div>
       <!-- Top Actions Bar -->
@@ -373,7 +374,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { useForm, router } from '@inertiajs/vue3';
+import { useForm, router, Head } from '@inertiajs/vue3';
 import axios from 'axios';
 import { generateReceiptPdf } from '../../utils/pdf';
 import AuthenticatedLayout from '../../layouts/AuthenticatedLayout.vue';
