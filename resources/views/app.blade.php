@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    <div id="toast-container" class="toast-container"></div>
     @inertia
 </body>
 

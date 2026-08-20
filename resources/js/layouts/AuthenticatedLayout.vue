@@ -4,12 +4,15 @@
     <aside class="sidebar" :class="{ 'collapsed': isSidebarCollapsed }">
       <div class="sidebar-brand">
         <i class="fa-solid fa-book-open-reader"></i>
-        <span id="site-title-brand">Clever's Room</span>
+        <span id="site-title-brand">{{ $page.props.siteName || 'Clever\'s Room' }}</span>
       </div>
       <nav class="sidebar-nav">
         <ul>
-          <li class="nav-item active">
+          <li class="nav-item" :class="{ active: $page.component === 'Dashboard' }">
             <Link href="/dashboard"><i class="fa-solid fa-chart-pie"></i> <span>Dashboard</span></Link>
+          </li>
+          <li class="nav-item" :class="{ active: $page.component === 'Settings' }">
+            <Link href="/settings"><i class="fa-solid fa-gears"></i> <span>Settings</span></Link>
           </li>
           <!-- Other items to be added as features are developed -->
         </ul>
@@ -48,8 +51,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { Link } from '@inertiajs/vue3';
+import { ref, computed, watch, onMounted } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
+
+const page = usePage();
 
 const isSidebarCollapsed = ref(false);
 
@@ -61,4 +66,54 @@ const currentDate = computed(() => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date().toLocaleDateString('en-US', options);
 });
+
+// Flash messages handler
+const showToast = (message, type) => {
+    const container = document.getElementById('toast-container');
+    if (!container) return;
+    
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+    
+    let iconClass = 'fa-info-circle';
+    if (type === 'success') iconClass = 'fa-check-circle';
+    if (type === 'danger') iconClass = 'fa-circle-xmark';
+    if (type === 'warning') iconClass = 'fa-triangle-exclamation';
+    
+    toast.innerHTML = `
+      <div class="toast-icon"><i class="fa-solid ${iconClass}"></i></div>
+      <div class="toast-message">${message}</div>
+      <button class="toast-close"><i class="fa-solid fa-xmark"></i></button>
+    `;
+    
+    container.appendChild(toast);
+    
+    setTimeout(() => {
+      toast.classList.add('show');
+    }, 10);
+    
+    const closeBtn = toast.querySelector('.toast-close');
+    closeBtn.addEventListener('click', () => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 300);
+    });
+    
+    setTimeout(() => {
+      if (toast.parentElement) {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }
+    }, 5000);
+};
+
+onMounted(() => {
+    // Check flash messages on mount
+    if (page.props.flash?.success) showToast(page.props.flash.success, 'success');
+    if (page.props.flash?.error) showToast(page.props.flash.error, 'danger');
+});
+
+watch(() => page.props.flash, (flash) => {
+    if (flash?.success) showToast(flash.success, 'success');
+    if (flash?.error) showToast(flash.error, 'danger');
+}, { deep: true });
 </script>

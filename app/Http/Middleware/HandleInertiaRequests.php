@@ -35,10 +35,25 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $siteName = 'Clever\'s Room';
+        try {
+            $settings = \App\Models\Setting::find(1);
+            if ($settings && $settings->site_name) {
+                $siteName = $settings->site_name;
+            }
+        } catch (\Exception $e) {
+            // Database might not be migrated yet
+        }
+
         return [
             ...parent::share($request),
             'auth' => [
                 'user' => $request->user(),
+            ],
+            'siteName' => $siteName,
+            'flash' => [
+                'success' => fn () => $request->session()->get('success'),
+                'error' => fn () => $request->session()->get('error'),
             ],
         ];
     }
