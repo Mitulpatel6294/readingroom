@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/expenses/{expense}', [\App\Http\Controllers\ExpenseController::class, 'update']);
     Route::delete('/expenses/{expense}', [\App\Http\Controllers\ExpenseController::class, 'destroy']);
 
+    Route::get('/reports', [\App\Http\Controllers\ReportController::class, 'index'])->name('reports');
+
     Route::get('/members', [\App\Http\Controllers\MemberController::class, 'index'])->name('members');
     Route::post('/members', [\App\Http\Controllers\MemberController::class, 'store'])->name('members.store');
     Route::put('/members/{member}', [\App\Http\Controllers\MemberController::class, 'update'])->name('members.update');

@@ -23,6 +23,9 @@
           <li class="nav-item" :class="{ active: $page.component?.startsWith('Expenses') }">
             <Link href="/expenses"><i class="fa-solid fa-wallet"></i> <span>Expenses</span></Link>
           </li>
+          <li class="nav-item" :class="{ active: $page.component?.startsWith('Reports') }">
+            <Link href="/reports"><i class="fa-solid fa-chart-line"></i> <span>Reports</span></Link>
+          </li>
           <li class="nav-item" :class="{ active: $page.component === 'Settings' }">
             <Link href="/settings"><i class="fa-solid fa-gears"></i> <span>Settings</span></Link>
           </li>
@@ -85,6 +88,7 @@ const PAGE_TITLES = {
     'Members/Index': 'Members',
     'Waitlist/Index': 'Waiting List',
     'Expenses/Index': 'Expenses',
+    'Reports/Index': 'Reports',
 };
 
 const pageTitle = computed(() => {
