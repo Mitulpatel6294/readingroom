@@ -26,6 +26,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/seats', [\App\Http\Controllers\SeatController::class, 'index'])->name('seats');
 
+    Route::get('/waitlist', [\App\Http\Controllers\WaitlistController::class, 'index'])->name('waitlist');
+    Route::post('/waitlist', [\App\Http\Controllers\WaitlistController::class, 'store']);
+    Route::delete('/waitlist/{waitlist}', [\App\Http\Controllers\WaitlistController::class, 'destroy']);
+
     Route::get('/members', [\App\Http\Controllers\MemberController::class, 'index'])->name('members');
     Route::post('/members', [\App\Http\Controllers\MemberController::class, 'store'])->name('members.store');
     Route::put('/members/{member}', [\App\Http\Controllers\MemberController::class, 'update'])->name('members.update');

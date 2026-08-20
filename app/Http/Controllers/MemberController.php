@@ -129,6 +129,10 @@ class MemberController extends Controller
                 'payment_date' => $paymentDate,
                 'months_paid' => $validated['months_paid'],
             ]);
+
+            if (!empty($validated['waitlist_id'])) {
+                \App\Models\Waitlist::destroy($validated['waitlist_id']);
+            }
         });
 
         return back()->with('success', 'Member added and seat booked successfully');

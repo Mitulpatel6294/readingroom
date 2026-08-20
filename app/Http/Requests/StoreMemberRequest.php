@@ -23,8 +23,8 @@ class StoreMemberRequest extends FormRequest
             'join_date' => ['required', 'date'],
             'months_paid' => ['required', 'integer', 'min:1', 'max:12'],
             'amount_cash' => ['nullable', 'numeric', 'min:0'],
-            'amount_upi' => ['nullable', 'numeric', 'min:0'],
             'payment_date' => ['nullable', 'date'],
+            'waitlist_id' => ['nullable', 'integer', 'exists:waiting_list,id'],
         ];
     }
 
